@@ -15,7 +15,10 @@ This include can be added to the header or placed inline before the script is in
 ## How to start the script
 
 ```javascript
-var cssSelector = '#waitForThis';
+var target = document;
+var selector = '#waitForThis';
+var repeat = false;
+
 useful.waitForIt(target, selector, function(elements) {
 	// execute this script only when the specified element gets added to the document
 	alert('the selected elements exist now', elements);
