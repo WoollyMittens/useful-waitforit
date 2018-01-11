@@ -438,6 +438,10 @@ var useful = useful || {};
 useful.waitForIt = function (target, selector, promise, repeat) {
 	// assume no repeats
 	repeat = repeat || false;
+	// fetch the target element if needed
+	if (typeof target === 'string') {
+		target = document.querySelector(target);
+	}
 	// if the target exists
 	if (target) {
 		// create an observer object or a crude fallback
@@ -449,7 +453,7 @@ useful.waitForIt = function (target, selector, promise, repeat) {
 		// add a handler to the observer
 		var observer = new MutationObserver(function(mutations, observer) {
 			// check if the element(s) exists yet
-			var selection = document.querySelectorAll(selector);
+			var selection = target.querySelectorAll(selector);
 			if (selection.length > 0) {
 				// stop observing
 				if(!repeat) { observer.disconnect(); }

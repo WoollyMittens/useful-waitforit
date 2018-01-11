@@ -29,19 +29,29 @@
 
 				<!-- Cut below this -->
 				<script src="./js/useful-waitforit.js"></script>
-				<p>
-					<a class="button" href="#" onclick="this.parentNode.innerHTML='<figure id=waitForThis><b>Hello World</b></figure>'">Insert the example HTML.</a>
-				</p>
+				<div id="watchThis"></div>
+				<ul>
+					<li><a class="button" href="#" onclick="document.getElementById('watchThis').innerHTML='<figure id=waitForThis><b>Hello World</b></figure>'">Insert the example HTML.</a></li>
+					<li><a class="button" href="#" onclick="document.getElementById('watchThis').innerHTML=''">Remove the example HTML.</a></li>
+				</ul>
 				<script>
 				//<!--
-					useful.waitForIt(document, '#waitForThis', function(selection) {
+					useful.waitForIt('#watchThis', '#waitForThis', function(selection) {
+						// START EXAMPLE
 						// this example script will only work after the example HTML is added to the document
-						selection[0].style.fontSize = '2.4rem';
-						selection[0].style.transition = 'all ease 500ms';
-						setInterval(function () {
-							selection[0].style.opacity = (selection[0].style.opacity !== '0') ? '0' : '1';
+						var _selection = selection[0];
+						var _interval = setInterval(function () {
+							if (_selection && _selection.offsetWidth > 0) {
+								_selection.style.color = '#' + (0x1000000 + Math.random() * 0xFFFFFF).toString(16).substr(1,6);
+								_selection.style.opacity = (_selection.style.opacity !== '0') ? '0' : '1';
+							} else {
+								clearInterval(_interval);
+							}
 						}, 1000);
-					}, false);
+						_selection.style.fontSize = '2.4rem';
+						_selection.style.transition = 'all ease 500ms';
+						// END EXAMPLE
+					}, true);
 				//-->
 				</script>
 				<!-- Cut above this -->

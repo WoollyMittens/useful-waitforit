@@ -13,6 +13,10 @@ var useful = useful || {};
 useful.waitForIt = function (target, selector, promise, repeat) {
 	// assume no repeats
 	repeat = repeat || false;
+	// fetch the target element if needed
+	if (typeof target === 'string') {
+		target = document.querySelector(target);
+	}
 	// if the target exists
 	if (target) {
 		// create an observer object or a crude fallback
@@ -23,11 +27,26 @@ useful.waitForIt = function (target, selector, promise, repeat) {
 		};
 		// add a handler to the observer
 		var observer = new MutationObserver(function(mutations, observer) {
+			var selection = [];
+			var complete = true;
+			// if the selector an array
+			if (selector.constructor === Array) {
+				// check all the conditions
+				for (var a = 0, b = selector.length; a < b; a += 1) {
+					selection[a] = document.querySelectorAll(selector[a]);
+					complete = complete && (selection[a].length > 0);
+				}
+			} else {
+				// or check the only condition
+				selection = document.querySelectorAll(selector);
+				complete = (selection.length > 0);
+			}
 			// check if the element(s) exists yet
-			var selection = document.querySelectorAll(selector);
-			if (selection.length > 0) {
+			if (complete) {
 				// stop observing
-				if(!repeat) { observer.disconnect(); }
+				if (!repeat) {
+					observer.disconnect();
+				}
 				// resolve the promise
 				promise(selection);
 			};
