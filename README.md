@@ -9,7 +9,7 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-waitforit">d
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/useful-waitforit.js"></script>
+<script src="./js/waitforit.js"></script>
 ```
 
 ## How to start the script
