@@ -78,6 +78,5 @@ var WaitForIt = function(cfg) {
 };
 
 // return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = WaitForIt;
-}
+if (typeof define != 'undefined') define(['waitforit'], function () { return WaitForIt });
+if (typeof module != 'undefined') module.exports = WaitForIt;
