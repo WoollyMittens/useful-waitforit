@@ -30,10 +30,8 @@
 				<!-- Cut below this -->
 				<script src="./js/waitforit.js"></script>
 				<div id="watchThis"></div>
-				<ul>
-					<li><a class="button" href="#" onclick="document.getElementById('watchThis').innerHTML='<figure id=waitForThis><b>Hello World</b></figure>'">Insert the example HTML.</a></li>
-					<li><a class="button" href="#" onclick="document.getElementById('watchThis').innerHTML=''">Remove the example HTML.</a></li>
-				</ul>
+				<p><a class="button" href="#" onclick="document.getElementById('watchThis').innerHTML='<figure id=waitForThis><b>Hello World</b></figure>'">Insert the example HTML.</a></p>
+				<p><a class="button" href="#" onclick="document.getElementById('watchThis').innerHTML=''">Remove the example HTML.</a></p>
 				<script>
 				//<!--
 					new WaitForIt({
@@ -42,6 +40,7 @@
 						'repeat': true,
 						'handler': function(selection) {
 							// START EXAMPLE BLINK SCRIPT
+							console.log('handler:', selection);
 							// this example script will only work after the example HTML is added to the document
 							var _selection = selection[0];
 							var _interval = setInterval(function () {

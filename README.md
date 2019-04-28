@@ -9,7 +9,23 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-waitforit">d
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/waitforit.js"></script>
+<script src="js/waitforit.js"></script>
+```
+
+Or use [Require.js](https://requirejs.org/).
+
+```js
+requirejs([
+	'js/waitforit.js'
+], function(WaitForIt) {
+	...
+});
+```
+
+Or import into an MVC framework.
+
+```js
+var WaitForIt = require('js/waitforit.js');
 ```
 
 ## How to start the script
